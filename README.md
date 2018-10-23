@@ -95,7 +95,9 @@ Each bird is assigned a CGP individual, called *brain* in the program, which con
 #### Parameter settings
 All the game parameters are set in the [settings.py](./settings.py). 
 
-
+## Reference
+[1] Miller, Julian F. "Cartesian genetic programming." Cartesian Genetic Programming. Springer, Berlin, Heidelberg, 2011. 17-34.
+[2] Wilson, Dennis G., Sylvain Cussat-Blanc, Hervé Luga, and Julian F. Miller. "Evolving simple programs for playing Atari games." arXiv preprint arXiv:1806.05695 (2018). [Arxiv](https://arxiv.org/abs/1806.05695)
 
 
 
