@@ -1,4 +1,4 @@
-# Learn to play Flappy Bird using Cartesian Genetic Programming
+# Learn to play Flappy Bird using Cartesian Genetic Programming (Evolutionary Computation)
 ## Overview
 We use cartesian genetic programming (a special form of evolutionary computation) to evolve an AI core to learn to play the *Flappy Bird* game. In brief, the program will learn a math function built with basic arithmetic operators to generate control action based on the current game state. More details about the background, the theory, and some implementation details are given below. A demo is given below (the blue bird is a human player which can be added at any time.)
 
@@ -69,7 +69,10 @@ Note that if a node's output is not fed into another node, then this node is unu
 #### Function set
 A key part in any GP is to specify the function set, i.e., the building blocks of the program we want to evolve. Our prior knowledge can be incorporated here. For example, if you want to evolve a Boolean function, the three basic units {AND, OR, NOT} are required. For the *Flappy Bird* game, I want to make the CGP as simple as possible. Thus, I only choose the basic arithmetic operators as follows: **{+, -, \*, /}** and *neg*, which returns the negated number. You may like to play with other functions!
 
-In this project, we use only 1 row of nodes in the CGP graph. Typically, the number of cols, i.e., the number of computational nodes, is a few hundreds such as 500. Don't be scared of the seemingly large amount of computations. Due to the existence of inactive nodes, which don't participate in computation, in each generation only about 10 percent of the nodes are in fact active. However, such genetic redundancy has been shown to be extremely beneficial to the efficiency of the evolution and is key to the CGP's success.
+In this project, we use only 1 row of nodes in the CGP graph. Typically, the number of cols, i.e., the number of computational nodes, is a few hundreds such as 500. Don't be scared of the seemingly large amount of computations. Due to the existence of inactive nodes, which don't participate in computation, in each generation only about 10 percent of the nodes are in fact active. However, such genetic redundancy has been shown to be extremely beneficial to the efficiency of the evolution and is key to the CGP's success. Thus, a possible CGP graph in our application may seem like follows.
+
+![possible-CGP](./doc/img/possible-CGP.png)
+
 #### Evolutionary strategy
 We usually adopt an [evolution strategy](https://en.wikipedia.org/wiki/Evolution_strategy)(ES) to perform evolution in CGP.  In fact, CGP only specifies the representation of an individual (also called chromosome) in evolution, and in theory, you can use any evolutionary algorithm, like the genetic algorithm, to do evolution. 
 
@@ -83,7 +86,7 @@ Like any other optimization problem, we need to set up an objective to be optimi
 
 Each bird is assigned a CGP individual, called *brain* in the program, which controls whether the bird should flap according to the output of the function *F(h, v, g)* the CGP graph encodes. If the output is positive, then flap.
 #### Parameter settings
-All the game parameters are set in the [setting.py](./setting.py). 
+All the game parameters are set in the [settings.py](./settings.py). 
 
 
 

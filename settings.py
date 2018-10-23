@@ -37,4 +37,4 @@ LAMBDA = 8
 N_GEN = 200  # max number of generations
 
 # if True, then additional information will be printed
-VERBOSE = True
+VERBOSE = False
