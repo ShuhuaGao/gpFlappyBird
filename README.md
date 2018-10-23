@@ -24,13 +24,20 @@ First change your directly into the downloaded *gpFlappyBird*. Then, run the gam
 `python main.py`
 ### Shortcut keys
 - <kbd>Ctrl</kbd>+<kbd>H</kbd>: add a human player (a blue bird) at any time
+
 - <kbd>Space</kbd>, or <kbd>UpArrow</kbd>: flap the human player's bird
+
 - <kbd>Ctrl</kbd>+<kbd>P</kbd>: pause/continue game
+
 - <kbd>Ctrl</kbd>+<kbd>M</kbd>: switch ON/OFF sound effect
-If you want to accelarate the evolution process, you can speed up the game by 
--  <kbd>Ctrl</kbd>+<kbd>1</kbd>: speed x1
--  <kbd>Ctrl</kbd>+<kbd>2</kbd>: speed x2
--  <kbd>Ctrl</kbd>+<kbd>2</kbd>: speed x3
+
+  If you want to accelarate the evolution process, you can speed up the game by 
+
+- <kbd>Ctrl</kbd>+<kbd>1</kbd>: speed x1
+
+- <kbd>Ctrl</kbd>+<kbd>2</kbd>: speed x2
+
+- <kbd>Ctrl</kbd>+<kbd>2</kbd>: speed x3
 ## Background
 
 In GitHub, there are many projects aiming to implement artificial intelligence for the *[Flappy Bird](https://en.wikipedia.org/wiki/Flappy_Bird)* game due to its simplicity. There is only one control action: flap or not. Generally, the algorithms of these projects can be classified into two types. The first is neuron evolution, which builds a neural network to map the game state to the control action, and weights of the network are updated using evolutionary algorithms instead of backpropagation, for example, [FlappyLearning](https://github.com/xviniette/FlappyLearning) on GitHub and the [tutorial](https://threads-iiith.quora.com/Neuro-Evolution-with-Flappy-Bird-Genetic-Evolution-on-Neural-Networks) on Quora. The other type focuses on reinforcement learning (RL), typical using a deep Q-Network trained by Q-learning, for example, the [DeepLearningFlappyBird](https://github.com/yenchenlin/DeepLearningFlappyBird) on GitHub. Note that the neuron-evolution based approaches usually gets the internal states like the distance between the bird and the pipe from the game with some game APIs, while deep RL based methods can accept raw pixels as inputs directly.
