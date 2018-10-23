@@ -1,11 +1,14 @@
 # Learn to play Flappy Bird using Cartesian Genetic Programming
 ## Overview
-We use cartesian genetic programming (a special form of evolutionary computation) to evolve an AI core to learn to play the *Flappy Bird* game. In brief, the program will learn a math function built with basic arithmetic operators to generate control action based on the current game state. More details about the background, the theory, and some implementation details are given below.
+We use cartesian genetic programming (a special form of evolutionary computation) to evolve an AI core to learn to play the *Flappy Bird* game. In brief, the program will learn a math function built with basic arithmetic operators to generate control action based on the current game state. More details about the background, the theory, and some implementation details are given below. A demo is given below (the blue bird is a human player which can be added at any time.)
+
+<img src="./doc/img/flappy_bird_demo.gif" width="600">
+
 ## Features
 
 - Compared with other AI flappy bird projects, this game is **more difficult**. Instead of a fixed number, the horizontal distance between adjacent pipes and the gap are all random within a given range.
 - With a small population of size 10, it typically takes **less than 50 generations** to get a *proficient* bird who can fly a very, very long distance before death.
-- Support adding a human player at any time to compete with the AI birds.
+- Support adding a human player at any time to compete with the AI birds (the blue bird).
 - No neural networks are involved (if this can count as a feature).
 
 ## Installation
@@ -42,7 +45,9 @@ In short, GP is a special form of [evolutionary computation](https://en.wikipedi
 
 ### Inputs and output
 Unlike the common setting in above mentioned projects, this *FlappyBird* game is more difficult, because the distance between adjacent pipes and the gap between each pair of pipes are random within a range rather than fixed. Thus, apart from the horizontal distance *h*  and the vertical distance *v* from the bird to the pipe in its front, the pipe gap *g* is also needed in the inputs. The three inputs are shown in the figure below.
+
 ![inputs](./doc/img/inputs.png)
+
 Now the function we want to learn (evolve) is *y=f(v, h, g)*. In our application, *f* outputs continuous values. Therefore, just like any binary classification, we define the control rules as follows: if *y>0*, then flap; otherwise, do not flap.
 
 Now the remaining question is to implement certain GP to learn *f*. The most commonly used and the oldest representaion of the program in GP is to use a tree structure, something similar to a syntax tree, which was also used by GP's establisher, John Koza. However, nowadays, there are also several non-tree representations, which is likely to work bettern than the tree based one. In this project, we use the Cartesian Genetic Programming (CGP), which relies on graph representation.
@@ -50,12 +55,15 @@ Now the remaining question is to implement certain GP to learn *f*. The most com
 Cartesian genetic programming is a form of genetic programming, developed by Julian Francis Miller, which uses a graph representation to encode computer programs. It is called ‘Cartesian’ because it represents a program using a two-dimensional grid of nodes. The following figure ([source](https://www.semanticscholar.org/paper/Breast-cancer-detection-using-cartesian-genetic-Ahmad-Khan/b30a33d54637e8323710a4f84973b1d3045c6d3e)) illustrates a CGP graph with 3 inputs, 3 outputs, and 9 computational nodes, which looks like a circuit.
 ![CGP-example](./doc/img/CGP-example.png)
 Though it may seem complicated at first sight, the principle is in fact very straightforward to understand. You can find many online tutorials given by Julian F. Miller on CGP , for example the [PPSN 2014 Tutorial](http://cs.ijs.si/ppsn2014/files/slides/ppsn2014-tutorial3-miller.pdf). The figure below in this tutorial gives the general form of CGP.
+
 ![general-form](./doc/img/general-form.png)
+
 We first number each computational node (including the input nodes). Then, given an node *f_i*, if it has two inputs labelled *j* and *k*, then it is connected to the two nodes *f_j* and *f_k*, that is, the outputs of the latter two nodes will be consumed by *f_i*. In the standard form, a node's inputs can only be connected to other nodes in previous columns (but not necessarily the adjacent one). We can also specify a *levels-back* parameter to limit the previous columns to which a node can be connected. Besides, one or more output nodes can be specified to produce the final outputs. For example, a functional node is represented by a triple [*g*, *p*, *q*], where *g* is a function, *p* and *q* the input labels. In the most basic version of CGP, evolution is to mutate each *g*, *p*, *q* randomly and then evaluate the fitness of the program encoded by the whole CGP graph.
 - Unlike neural networks, a node can connect to any nodes before it (constrained by *levels-back* number). In extreme cases, it can happen that a final output node is connected to the raw input node directly.
 - Like neural networks, we can also specify weights for each input. However, they are not learned by backpropagation, but by random mutations. This is like neuro evolution. 
 
 Note that if a node's output is not fed into another node, then this node is unused in the current graph. In such sense, CGP in form of  an acyclic direct graph actually encodes a computational graph. However, its charm is that the **functions** themselves and the **topology** of the graph can be changed and improved by evolution according to certain criterion. As a result, even the CGP graph has a fixed number of nodes, the programs (math expressions) it can encode are almost infinite. The following figure from [PPSN 2014 Tutorial](http://cs.ijs.si/ppsn2014/files/slides/ppsn2014-tutorial3-miller.pdf) gives a concrete example of CGP. We notice that the node 6 is not used (termed *inactive* in CGP).
+
 ![CGP-concrete](./doc/img/CGP-concrete.png)
 ### CGP configuration in this project
 #### Function set
@@ -74,7 +82,8 @@ Interestingly, OpenAI has also a paper titled *Evolution Strategies as a Scalabl
 Like any other optimization problem, we need to set up an objective to be optimized. In evolutionary computation, it is usually called *fitness*. In this project, the *fitness* is quantified with the distance the bird has flied.
 
 Each bird is assigned a CGP individual, called *brain* in the program, which controls whether the bird should flap according to the output of the function *F(h, v, g)* the CGP graph encodes. If the output is positive, then flap.
-
+#### Parameter settings
+All the game parameters are set in the [setting.py](./setting.py). 
 
 
 
