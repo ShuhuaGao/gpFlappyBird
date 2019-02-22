@@ -247,6 +247,8 @@ class Game:
         else:
             for pipe in self.pipes:
                 pipe.moveby(dx=-BIRD_X_SPEED)
+                if pipe.rect.x < -50:
+                    pipe.kill()
         # count the score: one point per frame
         for bird in self.birds:
             bird.score += 1  # when a bird dies, its score will be set to the CGP individual's fitness automatically
@@ -264,7 +266,7 @@ class Game:
         self._draw_text('Max score so far: {}'.format(self._max_score_so_far), 10, 10 + FONT_SIZE + 2)
         self._draw_text('Generation: {}'.format(self.current_generation), 10, 10 + 2 * (FONT_SIZE + 2))
         n_alive = len(self.birds)
-        if self._human_bird is not None:
+        if self._human_bird is not None and self._human_bird.alive():
             n_alive -= 1
         self._draw_text('Alive: {} / {}'.format(n_alive, self.n_birds), 10, 10 + 3 * (FONT_SIZE + 2))
         pg.display.update()

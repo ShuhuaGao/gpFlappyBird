@@ -119,7 +119,7 @@ class Individual:
             # mutate the input genes (connection genes)
             arity = self.function_set[node.i_func].arity
             for i in range(arity):
-                if node.i_inputs[i] is None or random.random() < mut_rate:
+                if node.i_inputs[i] is None or random.random() < mut_rate:  # if the mutated function requires more arguments, then the last ones are None 
                     node.i_inputs[i] = random.randint(max(pos - self.level_back, -self.n_inputs), pos - 1)
                 if node.weights[i] is None or random.random() < mut_rate:
                     node.weights[i] = random.uniform(self.weight_range[0], self.weight_range[1])
@@ -137,36 +137,6 @@ def protected_div(a, b):
     if abs(b) < 1e-6:
         return a
     return a / b
-
-
-def _and(a, b):
-    return a > 0 and b > 0
-
-
-def _or(a, b):
-    return a > 0 or b > 0
-
-
-def _not(a):
-    return not a > 0
-
-
-def square(a):
-    return a ** 2
-
-
-def sqrt(a):
-    return math.sqrt(abs(a))
-
-
-def relu(a):
-    return max(0, a)
-
-
-def ifelse(a, b, c):
-    if a > 0:
-        return b
-    return c
 
 
 fs = [Function(op.add, 2), Function(op.sub, 2), Function(op.mul, 2), Function(protected_div, 2), Function(op.neg, 1)]
