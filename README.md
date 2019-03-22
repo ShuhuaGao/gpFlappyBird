@@ -1,5 +1,8 @@
 # Learn to Play Flappy Bird using Cartesian Genetic Programming (Evolutionary Computation)
+[**NEW**] You can play the flappy bird AI online by repl.it now! Check https://repl.it/@shuhua/gpFlappyBird and click 'Run'.  (Note repl.it doesn't support sounds yet and thus I have turned them off.)
+
 ## Overview
+
 We use cartesian genetic programming (a special form of evolutionary computation) to evolve an AI core to learn to play the *Flappy Bird* game. In brief, the program will learn a math function built with basic arithmetic operators to generate control action based on the current game state. More details about the background, the theory, and some implementation issues are given below. A demo is shown in the following (the blue bird is a human player which can be added at any time.)
 
 <img src="./doc/img/flappy_bird_demo.gif" width="600">
