@@ -1,5 +1,7 @@
 # Learn to Play Flappy Bird using Cartesian Genetic Programming (Evolutionary Computation)
-[**NEW**] You can play the flappy bird AI online by repl.it now! Check https://repl.it/@shuhua/gpFlappyBird and click 'Run'.  (Note repl.it doesn't support sounds yet and thus I have turned them off.)
+[**NEW**] You can play the flappy bird AI online by repl.it now! Open it and click 'Run'.  (Note repl.it doesn't support sounds yet and thus I have turned them off.)
+
+[![Try on repl.it](https://repl-badge.jajoosam.repl.co/try.png)](https://repl.it/@shuhua/gpFlappyBird)
 
 ## Overview
 
