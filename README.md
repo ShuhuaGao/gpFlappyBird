@@ -27,7 +27,7 @@ or download as a zip file directly.
 ## How to play
 ### Run the game
 First change your directory into the downloaded *gpFlappyBird*. Then, run the game by 
-`python main.py`
+`python main_entry.py`
 
 ### Shortcut keys
 - <kbd>Ctrl</kbd>+<kbd>H</kbd>: add a human player (a blue bird) at any time
