@@ -103,7 +103,7 @@ From the demo at the very beginning, we can see that initially the birds just fl
 #### Parameter settings
 All the game parameters are set in the [settings.py](./settings.py). 
 
-## Inspect the final results after evolution
+## Inspect the final results after evolution 🥇 🥈 🥉
 
 The two methods in `postprocessing.py` may be used to simplify the evolved formula using `sympy` and visualize the CGP graph (including active nodes only) using `pygraphviz`.
 
@@ -122,5 +122,8 @@ Please refer to the [pp](./pp) directory for an example of evolved math formula 
 [2] Wilson, Dennis G., Sylvain Cussat-Blanc, Hervé Luga, and Julian F. Miller. "Evolving simple programs for playing Atari games." arXiv preprint arXiv:1806.05695 (2018). [Arxiv](https://arxiv.org/abs/1806.05695)
 
 If you are interested in *pygame*, then excellent lessons and tutorials can be found on [KidsCanCode](http://kidscancode.org/lessons/).
+
+## Related packages
+If you want to apply genetic programming (GP) in your own project, the core code in `cgp.py` and `postprocessing.py` may be reused. An alternative (and better) choice is to resort to the full-fledged library for GP, [geppy](https://github.com/ShuhuaGao/geppy), which implements another popular GP technique called *gene expression programming*. [geppy](https://github.com/ShuhuaGao/geppy) is a devoted and well documented library.
 
 
