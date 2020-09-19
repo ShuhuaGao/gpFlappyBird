@@ -15,7 +15,6 @@ import math
 from typing import Dict, Sequence
 import networkx as nx
 from settings import *
-import graphviz as gv
 
 
 # Map Python functions to sympy counterparts for symbolic simplification.
