@@ -28,13 +28,24 @@ MIN_PIPE_LENGTH = 100
 
 # parameters of cartesian genetic programming
 MUT_PB = 0.015  # mutate probability
-N_COLS = 500   # number of cols (nodes) in a single-row CGP
-LEVEL_BACK = 500  # how many levels back are allowed for inputs in CGP
+N_COLS = 100   # number of cols (nodes) in a single-row CGP
+LEVEL_BACK = 80  # how many levels back are allowed for inputs in CGP
 
 # parameters of evolutionary strategy: MU+LAMBDA
 MU = 2
 LAMBDA = 8
-N_GEN = 200  # max number of generations
+N_GEN = 50  # max number of generations
 
 # if True, then additional information will be printed
 VERBOSE = False
+
+# Postprocessing
+# if True, then the evolved math formula will be simplified and the corresponding
+# computational graph will be visualized into files under the `pp` directory
+PP_FORMULA = True
+PP_FORMULA_NUM_DIGITS = 5
+PP_FORMULA_SIMPLIFICATION = True
+PP_GRAPH_VISUALIZATION = True
+
+# for reproduction by setting an integer value; otherwise, set `None`
+RANDOM_SEED = 14256

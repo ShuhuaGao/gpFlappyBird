@@ -87,8 +87,6 @@ def simplify(g: nx.MultiDiGraph, input_names: Sequence = None, symbolic_function
     For example, `add(sub(3, 3), x)` may be simplified to `x`. Note that this method is used to simplify the 
     **final** solution rather than during evolution. 
     """
-    if input_names is None:
-        input_names = [f"#{i}" for i in range(ind.n_inputs)]
     if symbolic_function_map is None:
         symbolic_function_map = DEFAULT_SYMBOLIC_FUNCTION_MAP
 
@@ -120,3 +118,44 @@ def simplify(g: nx.MultiDiGraph, input_names: Sequence = None, symbolic_function
 def round_expr(expr, num_digits):
     # https://stackoverflow.com/questions/48491577/printing-the-output-rounded-to-3-decimals-in-sympy
     return expr.xreplace({n: round(n, num_digits) for n in expr.atoms(sp.Number)})
+
+
+def visualize(g: nx.MultiDiGraph, to_file: str, input_names: Sequence = None, operator_map: Dict = None):
+    """Visualize an acyclic graph `g`.
+
+    Args:
+        g (nx.MultiDiGraph): a graph
+        to_file (str): file path
+        input_names (Sequence, optional): a list of names, each for one input. If `None`, then a default name "vi" is used
+            for the i-th input. Defaults to None.
+        operator_map (Dict, optional): Denote a function by an operator symbol for conciseness. Defaults to None. If `None`,
+            then +-*/ are used.
+    """
+
+    from networkx.drawing.nx_agraph import to_agraph
+    import pygraphviz
+    layout = 'dot'
+    # label each function node with an operator
+    if operator_map is None:
+        operator_map = {operator.add.__name__: '+',
+                        operator.sub.__name__: '-',
+                        operator.neg.__name__: '-',
+                        operator.mul.__name__: '*',
+                        "protected_div": '/'}
+    for n in g.nodes:
+        attr = g.nodes[n]
+        if n >= 0:  # function node
+            if attr['func'] not in operator_map:
+                print(
+                    f"Operator notation of '{attr['func']}'' is not available. The node id is shown instead.")
+            attr['label'] = operator_map.get(attr['func'], n)
+            if g.out_degree(n) == 0:  # the unique output node
+                attr['color'] = 'red'
+        else:  # input node
+            attr['color'] = 'green'
+            attr['label'] = input_names[-n -
+                                        1] if input_names is not None else f'v{-n}'
+
+    ag: pygraphviz.agraph.AGraph = to_agraph(g)
+    ag.layout(layout)
+    ag.draw(to_file)
