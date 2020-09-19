@@ -45,7 +45,7 @@ VERBOSE = False
 PP_FORMULA = True
 PP_FORMULA_NUM_DIGITS = 5
 PP_FORMULA_SIMPLIFICATION = True
-PP_GRAPH_VISUALIZATION = True
+PP_GRAPH_VISUALIZATION = False
 
 # for reproduction by setting an integer value; otherwise, set `None`
 RANDOM_SEED = 14256
