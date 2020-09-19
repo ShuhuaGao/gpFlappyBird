@@ -12,9 +12,11 @@ class Function:
     """
     A general function
     """
-    def __init__(self, f, arity):
+
+    def __init__(self, f, arity, name=None):
         self.f = f
         self.arity = arity
+        self.name = f.__name__ if name is None else name
 
     def __call__(self, *args, **kwargs):
         return self.f(*args, **kwargs)
