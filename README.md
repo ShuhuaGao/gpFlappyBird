@@ -101,6 +101,20 @@ From the demo at the very beginning, we can see that initially the birds just fl
 #### Parameter settings
 All the game parameters are set in the [settings.py](./settings.py). 
 
+## Inspect the final results after evolution
+
+The two methods in `postprocessing.py` may be used to simplify the evolved formula using `sympy` and visualize the CGP graph (including active nodes only) using `pygraphviz`.
+
+The inspection behavior is controlled by the following settings:
+```python
+PP_FORMULA = True
+PP_FORMULA_NUM_DIGITS = 5
+PP_FORMULA_SIMPLIFICATION = True
+PP_GRAPH_VISUALIZATION = True
+```
+
+Please refer to the [pp](./pp) directory for an example of evolved math formula and graphs. However, do note that, even after simplification, the formula may be rather long if the number of columns in CGP is large.
+
 ## Reference
 [1] Miller, Julian F. "Cartesian genetic programming." Cartesian Genetic Programming. Springer, Berlin, Heidelberg, 2011. 17-34.
 [2] Wilson, Dennis G., Sylvain Cussat-Blanc, Hervé Luga, and Julian F. Miller. "Evolving simple programs for playing Atari games." arXiv preprint arXiv:1806.05695 (2018). [Arxiv](https://arxiv.org/abs/1806.05695)
